@@ -9,4 +9,6 @@ post '/insert_activity' do
   duration = params[:duration]
   description = params[:description]
   title+"<br> "+date +"<br> " +duration + "<br> " + description
+
+
 end
