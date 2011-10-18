@@ -30,6 +30,14 @@ class Activity
     @description = result[4]
     result
   end
+
+  def encode_line
+    separator = " | "
+    @id.to_s + separator + @title + separator + @date.day.to_s.rjust(2, '0') + "/" +
+        @date.month.to_s.rjust(2, '0') + "/" + @date.year.to_s.rjust(2, '0')  + " " + @date.hour.to_s.rjust(2, '0') +
+        ":" + @date.min.to_s.rjust(2, '0') + separator + (@duration / 60).to_s.rjust(2, '0') + ":" +
+        (@duration % 60).to_s.rjust(2, '0') + separator  + @description
+  end
 end
 
 
