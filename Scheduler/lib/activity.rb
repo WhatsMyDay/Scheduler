@@ -17,7 +17,13 @@ class Activity
   end
 
 
+  def list ()
 
+    puts("Activity ID is "+ id )
+
+
+
+  end
 
 
 end

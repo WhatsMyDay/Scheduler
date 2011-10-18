@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdae18e0-c5a1-4177-b24c-9ec0a8663cc6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scheduler/lib/activity.rb" afterPath="$PROJECT_DIR$/Scheduler/lib/activity.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scheduler/spec/activity_spec.rb" afterPath="$PROJECT_DIR$/Scheduler/spec/activity_spec.rb" />
     </list>
@@ -30,7 +29,7 @@
       <file leaf-file-name="activity.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Scheduler/lib/activity.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="36" selection-start="245" selection-end="245" vertical-scroll-proportion="0.33271718">
+            <state line="28" column="32" selection-start="361" selection-end="361" vertical-scroll-proportion="0.7763401">
               <folding />
             </state>
           </provider>
@@ -39,7 +38,7 @@
       <file leaf-file-name="activity_spec.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scheduler/spec/activity_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="33" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0">
+            <state line="13" column="19" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -167,6 +166,12 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Scheduler/lib" />
+      <recent name="$PROJECT_DIR$/Scheduler/spec" />
+    </key>
   </component>
   <component name="RunManager" selected="RSpec.activity_spec">
     <configuration default="false" name="activity_spec" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
@@ -347,14 +352,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Scheduler/spec/activity_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="33" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0">
+        <state line="13" column="19" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scheduler/lib/activity.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="36" selection-start="245" selection-end="245" vertical-scroll-proportion="0.33271718">
+        <state line="28" column="32" selection-start="361" selection-end="361" vertical-scroll-proportion="0.7763401">
           <folding />
         </state>
       </provider>
