@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'lib/activity'
 get '/add_activity' do
   erb:add_activity
 end
@@ -8,7 +9,7 @@ post '/insert_activity' do
   date = params[:date]
   duration = params[:duration]
   description = params[:description]
-  title+"<br> "+date +"<br> " +duration + "<br> " + description
 
-
+  activity=Activity.new(1,title,date,duration,description);
+  activity.to_s
 end
