@@ -17,16 +17,10 @@ class Activity
   end
 
 
-  def list ()
-
-    puts("Activity ID is "+ id )
 
 
 
-  end
 
-
-end
 
   def decode_line input_string
     result = []
@@ -36,7 +30,13 @@ end
     result
   end
 
+  def to_s()
+    "id:" + id.to_s + " title:" + title.to_s + "date:" + date.to_s + "duration:" + duration.to_s + "description: " + description.to_s
+  end
 
+
+
+end
 
 
 
