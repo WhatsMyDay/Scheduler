@@ -4,7 +4,13 @@ class Activity
 
   attr_reader :ID, :Title, :Date, :Duration, :Description
 
-
+  def decode_line input_string
+    result = []
+    input_string.split(" | ").each do | s |
+      result << s.strip
+    end
+    result
+  end
 
 
 
