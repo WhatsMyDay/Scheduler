@@ -19,6 +19,16 @@ describe Activity do
 
 
 
+  it "should list all activities" do
+
+                    activity = Activity.new(1324,"hi",13/13/2011,"3 hours","Hi")
+                    activity.list
+
+
+
+
+  end
+
 
 
 

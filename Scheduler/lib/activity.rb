@@ -6,7 +6,7 @@ class Activity
 
 
 
-  def initialize(num, title, date , dur , desc )
+  def initialize(num=0, title="", date= "", dur="" , desc="" )
 
     @id = num
     @title = title
@@ -28,7 +28,13 @@ class Activity
 
 end
 
-
+  def decode_line input_string
+    result = []
+    input_string.split(" | ").each do | s |
+      result << s.strip
+    end
+    result
+  end
 
 
 
