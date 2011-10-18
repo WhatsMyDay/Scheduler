@@ -1,10 +1,7 @@
-
 require 'rspec'
 require '../lib/activity.rb'
 
-
 describe Activity do
-
   it "should split the string into sub_strings" do
     test_string = "1 | Doctor | 19/10/2011 16:00 | 01:00 | appointment for check_up"
     results = subject.decode_line(test_string)
@@ -26,14 +23,19 @@ describe Activity do
   end
 
   it "should encode the class into the string" do
-    activity = Activity.new(1,"Doctor",Time.mktime(2011, 10, 19, 16, 0),60,"appointment for check_up")
+    activity = Activity.new(1, "Doctor", Time.mktime(2011, 10, 19, 16, 0), 60, "appointment for check_up")
     test_string = "1 | Doctor | 19/10/2011 16:00 | 01:00 | appointment for check_up"
     activity.encode_line().should ==test_string
   end
 
   it "should have an ID of 356" do
-    activity = Activity.new
+    activity = Activity.new(356, "hi", 13/13/2011, "3 hours", "Hi")
     activity.id.should == 356
   end
-end
 
+  it "should show the toString result" do
+    activity1 = Activity.new(1324, "Dental appointment", 13/13/2011, "3 hours", "Kilburn building")
+    activity1.to_s.should=="id:" + activity1.id.to_s + " title:" + activity1.title.to_s + "date:" + activity1.date.to_s + "duration:" + activity1.duration.to_s+
+        "description: " + activity1.description.to_s
+  end
+end
