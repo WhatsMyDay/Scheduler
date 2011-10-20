@@ -1,12 +1,13 @@
 class Activity
-  attr_accessor :id, :title, :date, :duration, :description
+  attr_accessor :id, :title, :date, :duration, :description, :status
 
-  def initialize(num = nil, title = nil, date = nil, dur = nil, desc = nil)
+  def initialize(num = nil, title = nil, date = nil, dur = nil, desc = nil, stat='not done')
     @id = num
     @title = title
     @date = date
     @duration = dur
     @description = desc
+    @status = stat
   end
 
   def decode_line input_string
@@ -35,6 +36,18 @@ class Activity
   def to_s()
     "id:" + id.to_s + " title:" + title.to_s + "date:" + date.to_s + "duration:"+ duration.to_s + "description: " + description.to_s
   end
+
+  def change_status (stat)
+
+    @status = stat
+
+   end
+
+
+
+
+
+
 end
 
 
