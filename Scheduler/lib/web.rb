@@ -35,3 +35,9 @@ get '/edit_activity/:id' do
   erb :edit_activity
 end
 
+
+get '/delete_activity/:id' do
+  array.delete_if { |a| a.id == params[:id].to_i }
+
+end
+
