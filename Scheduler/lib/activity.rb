@@ -36,18 +36,14 @@ class Activity
 
   def to_s()
     "id:" + id.to_s + " title:" + title.to_s + "date:" + date.to_s + "duration:" + duration.to_s + "description:" +
-    description.to_s + "status:" + status.to_s
+        description.to_s + "status:" + status.to_s
   end
 
   def change_status (stat)
 
     @status = stat
 
-   end
-
-
-
-
+  end
 
 
 end

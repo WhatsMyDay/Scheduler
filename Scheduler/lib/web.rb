@@ -5,16 +5,17 @@ require 'activityarray'
 array=ActivityArray.new
 
 get '/activities' do
-  #erb:activities
   result=""
   array.each do |activity|
-   result+=activity.to_s+" <a href=\"edit_activity/"+activity.id.to_s+"\">Edit</a>"
+    result += activity.to_s +
+        " <a href=\"edit_activity/"+activity.id.to_s+"\">Edit</a>" +
+        " <a href=\"delete_activity/" + activity.id.to_s + "\">Delete</a> <br>"
   end
   result
 end
 
 get '/add_activity' do
-  erb:add_activity
+  erb :add_activity
 end
 
 post '/insert_activity' do
@@ -31,7 +32,13 @@ end
 
 get '/edit_activity/:id' do
   @activity = array.select { |a| a.id == params[:id].to_i }
-  erb :edit_activity ,@activity
+  erb :edit_activity, @activity
   #@activity.to_s
+end
+
+
+get '/delete_activity/:id' do
+  array.delete_if { |a| a.id == params[:id].to_i }
+
 end
 
