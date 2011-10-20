@@ -1,2 +1,1 @@
-100 | Dentist | 20/10/2011 19:00 | 01:00 | Glasses readjusted
-100 | Doctor | 21/11/2011 12:00 | 00:30 | sdfsdf
+100 | Doctor | 20/10/2011 19:00 | 01:00 | Full frontal lobotomy
