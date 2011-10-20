@@ -36,12 +36,12 @@ describe Activity do
   end
 
   it "should show the toString result" do
-    activity1 = Activity.new(1324, "Dental appointment", 13/13/2011, "3 hours", "Killburn building", "done")
-    activity1.to_s.should=="id:" + activity1.id.to_s + " title:" + activity1.title.to_s + "date:" + activity1.date.to_s + "duration:" + activity1.duration.to_s + "description:" + activity1.description.to_s + "status:" + activity1.status.to_s
+    activity1 = Activity.new(1324, "Dental appointment", 13/13/2011, "3 hours", "Kilburn building", "done")
+    activity1.to_s.should=='1324: 0 (3 hours) Dental appointment - Kilburn building > done'
   end
 
   it "should update the status"do
-     activity1 = Activity.new(1234,"Dental appointment", 13/3/2011, "3 hours", "Killburn building","")
+     activity1 = Activity.new(1234,"Dental appointment", 13/3/2011, "3 hours", "Kilburn building","")
 
      activity1.change_status('done')
      activity1.status.should == 'done'
