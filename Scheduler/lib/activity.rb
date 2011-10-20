@@ -22,6 +22,7 @@ class Activity
     n = /(\d+):(\d\d)/.match(result[3])
     @duration = (n[1].to_i * 60) + n[2].to_i
     @description = result[4]
+    @status = result[5]
     result
   end
 
@@ -30,11 +31,12 @@ class Activity
     @id.to_s + separator + @title + separator + @date.day.to_s.rjust(2, '0') + "/" +
         @date.month.to_s.rjust(2, '0') + "/" + @date.year.to_s.rjust(2, '0') + " " + @date.hour.to_s.rjust(2, '0') +
         ":" + @date.min.to_s.rjust(2, '0') + separator + (@duration / 60).to_s.rjust(2, '0') + ":" +
-        (@duration % 60).to_s.rjust(2, '0') + separator + @description
+        (@duration % 60).to_s.rjust(2, '0') + separator + @description + separator + @status
   end
 
   def to_s()
-    "id:" + id.to_s + " title:" + title.to_s + "date:" + date.to_s + "duration:"+ duration.to_s + "description: " + description.to_s
+    "id:" + id.to_s + " title:" + title.to_s + "date:" + date.to_s + "duration:" + duration.to_s + "description:" +
+    description.to_s + "status:" + status.to_s
   end
 
   def change_status (stat)
