@@ -61,4 +61,7 @@ describe ActivityArray do
     f.gets.should == "300 | optician | 25/03/2011 10:00 | 01:00 | mend glasses\n"
     f.close()
   end
+
+
+
 end
