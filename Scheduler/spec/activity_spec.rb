@@ -38,4 +38,13 @@ describe Activity do
     activity1.to_s.should=="id:" + activity1.id.to_s + " title:" + activity1.title.to_s + "date:" + activity1.date.to_s + "duration:" + activity1.duration.to_s+
         "description: " + activity1.description.to_s
   end
+
+  it "should update the status"do
+     activity1 = Activity.new(1234,"Dental appointment", 13/3/2011, "3 hours", "Killburn building","")
+
+     activity1.change_status('done')
+     activity1.status.should == 'done'
+    end
+
+
 end
