@@ -30,8 +30,8 @@ post '/insert_activity' do
 end
 
 get '/edit_activity/:id' do
-  @activity = array.select { |a| a.id == params[:id].to_i }
-  erb :edit_activity ,@activity
-  #@activity.to_s
+  activities = array.select { |a| a.id == params[:id].to_i }
+  @activity = activities.first
+  erb :edit_activity
 end
 
