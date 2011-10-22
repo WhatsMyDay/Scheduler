@@ -4,12 +4,13 @@
   </head>
   <body>
 
-  <form name="input" action="do_edit_activity" method="post">
+  <form name="input" action="/do_edit_activity" method="post">
+    <input type="hidden" name="id" value="<%=@activity.id  %>" />
     Title:<input type="text" id="title" name="title" value="<%=@activity.title  %>"/><br>
     Date:<input type="text" id="Date" name="date" value="  <%=@activity.date  %>"/>  <br>
     Duration:<input type="text" id="Duration" name="duration" value="  <%=@activity.duration  %>"/><br>
     Description:<input type="text" id="Description" name="description" value="  <%=@activity.description  %>"/><br>
-    Status:<select>
+    Status:<select id="status">
         <option>Not Done</option>
        <option <% if (@activity.status=="done") then
        "selected=\"selected\" " end%> >Done</option>

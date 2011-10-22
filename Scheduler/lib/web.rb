@@ -40,4 +40,14 @@ get '/delete_activity/:id' do
   array.delete_if { |a| a.id == params[:id].to_i }
 
 end
+ post'/do_edit_activity' do
+   activities = array.select { |a| a.id == params[:id].to_i}
+   activity = activities.first
+   activity.title = params[:title].to_s
+   activity.date = params[:date].to_s
+   activity.duration = params[:duration].to_s
+   activity.description = params[:description].to_s
+   activity.status = params[:status].to_s
+
+ end
 
