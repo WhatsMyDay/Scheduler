@@ -8,7 +8,9 @@ get '/activities' do
   #erb:activities
   result=""
   array.each do |activity|
-   result+=activity.to_s+" <a href=\"edit_activity/"+activity.id.to_s+"\">Edit</a>"
+    result += activity.to_s +
+        " <a href=\"edit_activity/"+activity.id.to_s+"\">Edit</a>" +
+        " <a href=\"delete_activity/" + activity.id.to_s + "\">Delete</a> <br>"
   end
   result
 end
@@ -23,9 +25,11 @@ post '/insert_activity' do
   duration = params[:duration]
   description = params[:description]
   priority = params[:priority]
-  activity = Activity.new(100, title, start_time, duration.to_i, description, priority)
+  activity = Activity.new(100, title, date, duration.to_i, description, priority)
   array << activity
   array.store_to_file("saved_activities.txt")
+
+  redirect '/activities'
 end
 
 get '/edit_activity/:id' do
@@ -47,7 +51,6 @@ end
    activity.duration = params[:duration].to_s
    activity.description = params[:description].to_s
    activity.is_done = params[:is_done].to_s
-
 
  end
 
