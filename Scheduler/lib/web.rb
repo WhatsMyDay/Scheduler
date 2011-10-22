@@ -4,13 +4,15 @@ require 'activityarray'
 
 array=ActivityArray.new
 
-get '/activities' do
-  #erb:activities
+get '/activities/?:list?' do
   result=""
+  skip_if_done = !params[:list].nil?
   array.each do |activity|
-    result += activity.to_s +
+    if not (activity.is_done && skip_if_done)
+      result += activity.to_s +
         " <a href=\"edit_activity/"+activity.id.to_s+"\">Edit</a>" +
         " <a href=\"delete_activity/" + activity.id.to_s + "\">Delete</a> <br>"
+    end
   end
   result
 end
@@ -25,7 +27,7 @@ post '/insert_activity' do
   duration = params[:duration]
   description = params[:description]
   priority = params[:priority]
-  activity = Activity.new(Time.now.to_i, title, date, duration.to_i, description, priority)
+  activity = Activity.new(Time.now.to_i, title, start_time, duration.to_i, description, priority)
   array << activity
   array.store_to_file("saved_activities.txt")
 
