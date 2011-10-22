@@ -1,1 +1,2 @@
-100 | Doctor | 16/10/2011 10:11 | 00:30 | Check up! | not done
+100 | Dentist | 23/10/2011 16:00 | 01:00 | It hurts :( | not done | urgent
+100 | Dentist | 23/10/2011 16:00 | 01:00 | It hurts :( | not done | urgent
