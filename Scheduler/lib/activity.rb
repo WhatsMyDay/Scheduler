@@ -36,7 +36,7 @@ class Activity
   end
 
   def to_s()
-    "#{@id}: #{@start_time} (#{@duration}) #{@title} - #{@description} > #{ @is_done? "done": "not done"}, #{@priority}"
+    "#{@start_time} (#{@duration}) #{@title} - #{@description} > #{ @is_done? "done": "not done"}, #{@priority}"
   end
 
 
