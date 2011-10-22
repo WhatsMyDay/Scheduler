@@ -31,7 +31,7 @@ class Activity
 
   def encode_line
     separator = " | "
-    @id.to_s + separator + @title + separator + "#{@start_time}" + separator + (@duration / 60).to_s.rjust(2, '0') + ":" +
+    @id.to_s + separator + @title + separator + "#{@start_time}" + separator + (@duration.to_i / 60).to_s.rjust(2, '0') + ":" +
         (@duration % 60).to_s.rjust(2, '0') + separator + @description + separator + "#{@is_done? "done": "not done"}" +separator + @priority
   end
 

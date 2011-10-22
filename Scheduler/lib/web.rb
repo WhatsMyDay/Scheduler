@@ -19,12 +19,11 @@ end
 
 post '/insert_activity' do
   title=params[:title]
-  date = params[:date]
+  start_time = params[:start_time]
   duration = params[:duration]
   description = params[:description]
-  m = /(\d\d)\/(\d\d)\/(\d\d\d\d)\s(\d\d):(\d\d)/.match(date)
-  start_time = Time.mktime(m[3].to_i, m[2].to_i, m[1].to_i, m[4].to_i, m[5].to_i)
-  activity = Activity.new(100, title, start_time, duration.to_i, description)
+  priority = params[:priority]
+  activity = Activity.new(100, title, start_time, duration.to_i, description, priority)
   array << activity
   array.store_to_file("saved_activities.txt")
 end
@@ -44,10 +43,11 @@ end
    activities = array.select { |a| a.id == params[:id].to_i}
    activity = activities.first
    activity.title = params[:title].to_s
-   activity.date = params[:date].to_s
+   activity.start_time = params[:start_time].to_s
    activity.duration = params[:duration].to_s
    activity.description = params[:description].to_s
-   activity.status = params[:status].to_s
+   activity.is_done = params[:is_done].to_s
+
 
  end
 
