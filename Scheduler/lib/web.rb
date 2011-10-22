@@ -40,18 +40,28 @@ get '/edit_activity/:id' do
   erb :edit_activity
 end
 
+
 get '/delete_activity/:id' do
   array.delete_if { |a| a.id == params[:id].to_i }
 
   redirect '/activities'
 end
+ post'/do_edit_activity' do
+   activities = array.select { |a| a.id == params[:id].to_i}
+   activity = activities.first
+   activity.title = params[:title]
+   activity.start_time = ActivityTime.new(params[:start_time])
+   activity.duration = params[:duration]
+   activity.description = params[:description]
+   activity.is_done = params[:is_done]
+   if (params[:is_done]=="yes")then
+   activity.is_done =true
+    puts "activity status is changed to done" + params[:is_done]
+   else
+     activity.is_done = false
+     puts "activity status is changed to not done" + params[:is_done]
+  end
+   redirect '/activities'
 
-post'/do_edit_activity' do
-  activities = array.select { |a| a.id == params[:id].to_i}
-  activity = activities.first
-  activity.title = params[:title].to_s
-  activity.start_time = params[:start_time].to_s
-  activity.duration = params[:duration].to_s
-  activity.description = params[:description].to_s
-  activity.is_done = params[:is_done].to_s
  end
+

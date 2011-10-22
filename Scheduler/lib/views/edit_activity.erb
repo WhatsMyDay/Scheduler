@@ -7,14 +7,14 @@
   <form name="input" action="/do_edit_activity" method="post">
     <input type="hidden" name="id" value="<%=@activity.id  %>" />
     Title:<input type="text" id="title" name="title" value="<%=@activity.title  %>"/><br>
-    Start Time:<input type="text" id="start_time" name="date" value="  <%=@activity.start_time  %>"/>  <br>
-    Duration:<input type="text" id="Duration" name="duration" value="  <%=@activity.duration  %>"/><br>
-    Description:<input type="text" id="Description" name="description" value="  <%=@activity.description  %>"/><br>
+    Start Time:<input type="text" id="start_time" name="start_time" value="<%=@activity.start_time.to_s  %>"/>  <br>
+    Duration:<input type="text" id="Duration" name="duration" value="<%=@activity.duration  %>"/><br>
+    Description:<input type="text" id="Description" name="description" value="<%=@activity.description  %>"/><br>
     <input type="hidden" name="priority" value="normal"/>
-   is Done?:<select id="is_done">
-        <option>No</option>
-       <option <% if (@activity.is_done==true) then
-       "selected=\"selected\" " end%> >Yes</option>
+   is Done?:<select name="is_done">
+        <option>no</option>
+         <%=puts @activity.is_done.to_s%>
+       <option <%= @activity.is_done ? "selected" : "" %> >yes</option>
     </select>  <br>
     <input type="submit" name="edit" value="edit">
     </form>

@@ -46,5 +46,7 @@ describe Activity do
      activity1 = Activity.new(1234,"Dental appointment", "19/10/2011 16:00", "3 hours", "Kilburn building", "urgent")
      activity1.is_done = true
      activity1.is_done.should == true
+     activity1.is_done = false
+    activity1.is_done.should == false
   end
 end
