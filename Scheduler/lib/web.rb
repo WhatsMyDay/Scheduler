@@ -25,7 +25,7 @@ post '/insert_activity' do
   duration = params[:duration]
   description = params[:description]
   priority = params[:priority]
-  activity = Activity.new(100, title, date, duration.to_i, description, priority)
+  activity = Activity.new(100, title, start_time, duration.to_i, description, priority)
   array << activity
   array.store_to_file("saved_activities.txt")
 
@@ -46,11 +46,19 @@ end
  post'/do_edit_activity' do
    activities = array.select { |a| a.id == params[:id].to_i}
    activity = activities.first
-   activity.title = params[:title].to_s
-   activity.start_time = params[:start_time].to_s
-   activity.duration = params[:duration].to_s
-   activity.description = params[:description].to_s
-   activity.is_done = params[:is_done].to_s
+   activity.title = params[:title]
+   activity.start_time = ActivityTime.new(params[:start_time])
+   activity.duration = params[:duration]
+   activity.description = params[:description]
+   activity.is_done = params[:is_done]
+   if (params[:is_done]=="yes")then
+   activity.is_done =true
+    puts "activity status is changed to done" + params[:is_done]
+   else
+     activity.is_done = false
+     puts "activity status is changed to not done" + params[:is_done]
+  end
+   redirect '/activities'
 
  end
 
