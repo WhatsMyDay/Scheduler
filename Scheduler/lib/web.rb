@@ -5,6 +5,7 @@ require 'activityarray'
 array=ActivityArray.new
 
 get '/activities' do
+  #erb:activities
   result=""
   array.each do |activity|
     result += activity.to_s +
@@ -20,7 +21,7 @@ end
 
 post '/insert_activity' do
   title=params[:title]
-  date = params[:date]
+  start_time = params[:start_time]
   duration = params[:duration]
   description = params[:description]
   priority = params[:priority]
@@ -47,9 +48,8 @@ post'/do_edit_activity' do
   activities = array.select { |a| a.id == params[:id].to_i}
   activity = activities.first
   activity.title = params[:title].to_s
-  activity.date = params[:date].to_s
+  activity.start_time = params[:start_time].to_s
   activity.duration = params[:duration].to_s
   activity.description = params[:description].to_s
-  activity.status = params[:status].to_s
+  activity.is_done = params[:is_done].to_s
  end
-
