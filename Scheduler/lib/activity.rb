@@ -1,7 +1,7 @@
 require 'activity_time'
 
 class Activity
-  attr_accessor :id, :title, :start_time, :duration, :description, :status, :priority
+  attr_accessor :id, :title, :start_time, :duration, :description, :is_done, :priority
 
   def initialize(num = nil, title = nil, start_time = nil, dur = nil, desc = nil, prior = nil)
     @id = num
@@ -9,7 +9,7 @@ class Activity
     @start_time = ActivityTime.new(start_time) if !start_time.nil?
     @duration = dur
     @description = desc
-    @status = 'not done'
+    @is_done = false
     @priority = prior
   end
 
@@ -24,7 +24,7 @@ class Activity
     n = /(\d+):(\d\d)/.match(result[3])
     @duration = (n[1].to_i * 60) + n[2].to_i
     @description = result[4]
-    @status = result[5]
+    @is_done = result[5] == 'done'
     @priority = result[6]
     result
   end
@@ -32,16 +32,14 @@ class Activity
   def encode_line
     separator = " | "
     @id.to_s + separator + @title + separator + "#{@start_time}" + separator + (@duration / 60).to_s.rjust(2, '0') + ":" +
-        (@duration % 60).to_s.rjust(2, '0') + separator + @description + separator + @status +separator + @priority
+        (@duration % 60).to_s.rjust(2, '0') + separator + @description + separator + "#{@is_done? "done": "not done"}" +separator + @priority
   end
 
   def to_s()
-    "#{@id}: #{@start_time} (#{@duration}) #{@title} - #{@description} > #{@status}, #{@priority}"
+    "#{@id}: #{@start_time} (#{@duration}) #{@title} - #{@description} > #{ @is_done? "done": "not done"}, #{@priority}"
   end
 
-  def change_status (stat)
-    @status = stat
-  end
+
 end
 
 

@@ -18,7 +18,7 @@ describe ActivityArray do
     subject[0].start_time.to_s.should == '23/01/2011 04:23'
     subject[0].duration.should == 30
     subject[0].description == "general checkup"
-    subject[0].status == "done"
+    subject[0].is_done == true
     subject[0].priority =="urgent"
   end
 
@@ -36,7 +36,7 @@ describe ActivityArray do
     subject[0].start_time.to_s.should == '23/01/2011 04:00'
     subject[0].duration.should == 30
     subject[0].description == "general checkup"
-    subject[0].status == "done"
+    subject[0].is_done == true
     subject[0].priority == "urgent"
 
     subject[1].id.should == 200
@@ -44,7 +44,7 @@ describe ActivityArray do
     subject[1].start_time.to_s.should == '24/02/2011 07:00'
     subject[1].duration.should == 45
     subject[1].description == "see hygenist"
-    subject[1].status == "done"
+    subject[1].is_done == true
     subject[1].priority == "urgent"
 
     subject[2].id.should == 300
@@ -52,7 +52,7 @@ describe ActivityArray do
     subject[2].start_time.to_s.should == '25/03/2011 10:00'
     subject[2].duration.should == 60
     subject[2].description == "mend glasses"
-    subject[2].status == "done"
+    subject[2].is_done == true
     subject[2].priority == "urgent"
   end
 

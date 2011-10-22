@@ -22,7 +22,7 @@ describe Activity do
     subject.start_time.to_s.should == "19/10/2011 16:00"
     subject.duration.should == 60
     subject.description.should == "appointment for check_up"
-    subject.status.should == "done"
+    subject.is_done.should == true
     subject.priority.should == "urgent"
   end
 
@@ -44,7 +44,7 @@ describe Activity do
 
   it "should update the status" do
      activity1 = Activity.new(1234,"Dental appointment", "19/10/2011 16:00", "3 hours", "Kilburn building", "urgent")
-     activity1.change_status('done')
-     activity1.status.should == 'done'
+     activity1.is_done = true
+     activity1.is_done.should == true
   end
 end
