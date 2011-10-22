@@ -1,13 +1,14 @@
 class Activity
-  attr_accessor :id, :title, :date, :duration, :description, :status
+  attr_accessor :id, :title, :date, :duration, :description, :status, :priority
 
-  def initialize(num = nil, title = nil, date = nil, dur = nil, desc = nil, stat='not done')
+  def initialize(num = nil, title = nil, date = nil, dur = nil, desc = nil, prior = nil)
     @id = num
     @title = title
     @date = date
     @duration = dur
     @description = desc
-    @status = stat
+    @status = 'not done'
+    @priority = prior
   end
 
   def decode_line input_string
@@ -23,6 +24,7 @@ class Activity
     @duration = (n[1].to_i * 60) + n[2].to_i
     @description = result[4]
     @status = result[5]
+    @priority = result[6]
     result
   end
 
@@ -31,11 +33,11 @@ class Activity
     @id.to_s + separator + @title + separator + @date.day.to_s.rjust(2, '0') + "/" +
         @date.month.to_s.rjust(2, '0') + "/" + @date.year.to_s.rjust(2, '0') + " " + @date.hour.to_s.rjust(2, '0') +
         ":" + @date.min.to_s.rjust(2, '0') + separator + (@duration / 60).to_s.rjust(2, '0') + ":" +
-        (@duration % 60).to_s.rjust(2, '0') + separator + @description + separator + @status
+        (@duration % 60).to_s.rjust(2, '0') + separator + @description + separator + @status +separator + @priority
   end
 
   def to_s()
-    "#{@id}: #{@date} (#{@duration}) #{@title} - #{@description} > #{@status}"
+    "#{@id}: #{@date} (#{@duration}) #{@title} - #{@description} > #{@status}, #{@priority}"
   end
 
   def change_status (stat)
