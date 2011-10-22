@@ -25,7 +25,7 @@ post '/insert_activity' do
   duration = params[:duration]
   description = params[:description]
   priority = params[:priority]
-  activity = Activity.new(100, title, start_time, duration.to_i, description, priority)
+  activity = Activity.new(Time.now.to_i, title, date, duration.to_i, description, priority)
   array << activity
   array.store_to_file("saved_activities.txt")
 
@@ -42,6 +42,7 @@ end
 get '/delete_activity/:id' do
   array.delete_if { |a| a.id == params[:id].to_i }
 
+  redirect '/activities'
 end
  post'/do_edit_activity' do
    activities = array.select { |a| a.id == params[:id].to_i}
