@@ -19,7 +19,7 @@ describe Activity do
     subject.decode_line(test_string)
     subject.id.should == 1
     subject.title.should == "Doctor"
-    subject.date.should == Time.mktime(2011, 10, 19, 16, 0)
+    subject.start_time.to_s.should == "19/10/2011 16:00"
     subject.duration.should == 60
     subject.description.should == "appointment for check_up"
     subject.status.should == "done"
@@ -27,23 +27,23 @@ describe Activity do
   end
 
   it "should encode the class into the string" do
-    activity = Activity.new(1, "Doctor", Time.mktime(2011, 10, 19, 16, 0), 60, "appointment for check_up","low")
+    activity = Activity.new(1, "Doctor", "19/10/2011 16:00", 60, "appointment for check_up","low")
     test_string = "1 | Doctor | 19/10/2011 16:00 | 01:00 | appointment for check_up | not done | low"
     activity.encode_line().should ==test_string
   end
 
   it "should have an ID of 356" do
-    activity = Activity.new(356, "hi", 13/13/2011, "3 hours", "Hi","normal")
+    activity = Activity.new(356, "Dentist", "19/10/2011 16:00", "01:00", "For X-Rays","normal")
     activity.id.should == 356
   end
 
   it "should show the toString result" do
-    activity1 = Activity.new(1324, "Dental appointment", 13/13/2011, "3 hours", "Kilburn building", "urgent")
-    activity1.to_s.should=='1324: 0 (3 hours) Dental appointment - Kilburn building > not done, urgent'
+    activity1 = Activity.new(1324, "Dental appointment", "19/10/2011 16:00", "3 hours", "Kilburn building", "urgent")
+    activity1.to_s.should=='1324: 19/10/2011 16:00 (3 hours) Dental appointment - Kilburn building > not done, urgent'
   end
 
   it "should update the status" do
-     activity1 = Activity.new(1234,"Dental appointment", 13/3/2011, "3 hours", "Kilburn building", "urgent")
+     activity1 = Activity.new(1234,"Dental appointment", "19/10/2011 16:00", "3 hours", "Kilburn building", "urgent")
      activity1.change_status('done')
      activity1.status.should == 'done'
   end

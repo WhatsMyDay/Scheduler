@@ -1,10 +1,12 @@
-class Activity
-  attr_accessor :id, :title, :date, :duration, :description, :status, :priority
+require 'activity_time'
 
-  def initialize(num = nil, title = nil, date = nil, dur = nil, desc = nil, prior = nil)
+class Activity
+  attr_accessor :id, :title, :start_time, :duration, :description, :status, :priority
+
+  def initialize(num = nil, title = nil, start_time = nil, dur = nil, desc = nil, prior = nil)
     @id = num
     @title = title
-    @date = date
+    @start_time = ActivityTime.new(start_time) if !start_time.nil?
     @duration = dur
     @description = desc
     @status = 'not done'
@@ -18,8 +20,7 @@ class Activity
     end
     @id = result[0].to_i
     @title = result[1]
-    m = /(\d\d)\/(\d\d)\/(\d\d\d\d)\s(\d\d):(\d\d)/.match(result[2])
-    @date = Time.mktime(m[3].to_i, m[2].to_i, m[1].to_i, m[4].to_i, m[5].to_i)
+    @start_time = ActivityTime.new(result[2])
     n = /(\d+):(\d\d)/.match(result[3])
     @duration = (n[1].to_i * 60) + n[2].to_i
     @description = result[4]
@@ -30,14 +31,12 @@ class Activity
 
   def encode_line
     separator = " | "
-    @id.to_s + separator + @title + separator + @date.day.to_s.rjust(2, '0') + "/" +
-        @date.month.to_s.rjust(2, '0') + "/" + @date.year.to_s.rjust(2, '0') + " " + @date.hour.to_s.rjust(2, '0') +
-        ":" + @date.min.to_s.rjust(2, '0') + separator + (@duration / 60).to_s.rjust(2, '0') + ":" +
+    @id.to_s + separator + @title + separator + "#{@start_time}" + separator + (@duration / 60).to_s.rjust(2, '0') + ":" +
         (@duration % 60).to_s.rjust(2, '0') + separator + @description + separator + @status +separator + @priority
   end
 
   def to_s()
-    "#{@id}: #{@date} (#{@duration}) #{@title} - #{@description} > #{@status}, #{@priority}"
+    "#{@id}: #{@start_time} (#{@duration}) #{@title} - #{@description} > #{@status}, #{@priority}"
   end
 
   def change_status (stat)
