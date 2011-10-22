@@ -10,8 +10,8 @@ get '/activities/?:list?' do
   array.each do |activity|
     if not (activity.is_done && skip_if_done)
       result += activity.to_s +
-        " <a href=\"edit_activity/"+activity.id.to_s+"\">Edit</a>" +
-        " <a href=\"delete_activity/" + activity.id.to_s + "\">Delete</a> <br>"
+        " <a href=\"/edit_activity/"+activity.id.to_s+"\">Edit</a>" +
+        " <a href=\"/delete_activity/" + activity.id.to_s + "\">Delete</a> <br>"
     end
   end
   result
