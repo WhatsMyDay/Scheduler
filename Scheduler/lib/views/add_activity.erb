@@ -1,20 +1,49 @@
 <html>
-  <head>
-    <title>Add Activity</title>
-  </head>
-  <body>
+<head>
+  <title>Add Activity</title>
+</head>
+<body>
+<div style="margin-left:5%; margin-right: 5%; font-family: Arial">
   <form name="input" action="insert_activity" method="post">
-    Title:<input type="text" id="title" name="title" /> <br>
-    Start Date and Time:<input type="text" id="start_time" name="start_time"/>  <br>
-    Duration:<input type="text" id="Duration" name="duration"/><br>
-    Description:<input type="text" id="Description" name="description"/><br>
-    Location:<input type="text" id="Location" name="location"/><br>
-    Notes:<input type="text" id="notes" name="notes"/><br>
-    Priority:<br>
-    <input type="radio" name="priority" value="urgent" />Urgent<br>
-    <input type="radio" name="priority" value="normal" />Normal<br>
-    <input type="radio" name="priority" value="low" />Low<br>
-    <input type="submit" name="submit" value="Submit">
-    </form>
-  </body>
-  </html>
+    <table>
+      <tr>
+        <td>Title:</td>
+        <td><input type="text" id="title" name="title"/></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><input type="text" id="Description" name="description"/></td>
+      </tr>
+      <tr>
+        <td>Start Date and Time:</td>
+        <td><input type="text" id="start_time" name="start_time"/></td>
+      </tr>
+      <tr>
+        <td>Duration:</td>
+        <td><input type="text" id="Duration" name="duration"/></td>
+      </tr>
+      <tr>
+        <td>Location:</td>
+        <td><input type="text" id="Location" name="location"/></td>
+      </tr>
+      <tr>
+        <td>Notes:</td>
+        <td><input type="text" id="notes" name="notes"/></td>
+      </tr>
+      <tr>
+        <td>Priority:</td>
+        <td>
+          <input type="radio" name="priority" value="urgent"/>Urgent<br>
+          <input type="radio" name="priority" value="normal"/>Normal<br>
+          <input type="radio" name="priority" value="low"/>Low
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td align="right"><input type="submit" name="submit" value="Submit"></td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>
