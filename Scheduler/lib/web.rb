@@ -22,13 +22,8 @@ get '/add_activity' do
 end
 
 post '/insert_activity' do
-  title=params[:title]
-  start_time = params[:start_time]
-  duration = params[:duration]
-  description = params[:description]
-  priority = params[:priority]
-  location = params[:location]
-  activity = Activity.new(Time.now.to_i, title, start_time, duration.to_i, description, priority, location)
+ activity = Activity.new(Time.now.to_i, params[:title], params[:start_time], params[:duration].to_i, params[:description],
+                          params[:priority], params[:location])
   array << activity
   array.store_to_file("saved_activities.txt")
 
