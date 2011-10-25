@@ -13,6 +13,7 @@ describe Activity do
     browser.text_field(:name => "description").set "Check up!"
     browser.radio(:name => "priority", :value => "normal").set
     browser.text_field(:name => "location").set "Liverpool"
+    browser.text_field(:name => "notes").set "near Oxford street"
     browser.button(:value => "Submit").click
     browser.url.should=="http://localhost:4567/activities"
     browser.close
@@ -27,6 +28,7 @@ describe Activity do
     browser.text_field(:name => "duration").set "20"
     browser.text_field(:name => "description").set "Dental Checkup"
     browser.text_field(:name => "location").set "Manchester"
+    browser.text_field(:name => "notes").set "outside Oxford street"
     browser.select_list(:name => 'is_done').select "yes"
     browser.radio(:name => "priority", :value => "urgent").set
     browser.button(:value=> "Change").click
