@@ -1,3 +1,3 @@
-100 | doctor | 23/01/2011 04:00 | 00:30 | general checkup | not done | urgent | Manchester
-200 | dentist | 24/02/2011 07:00 | 00:45 | see hygenist | not done | urgent | Manchester
-300 | optician | 25/03/2011 10:00 | 01:00 | mend glasses | not done | urgent | Manchester
+100 | doctor | 23/01/2011 04:00 | 00:30 | general checkup | not done | urgent | Manchester | near Oxford street
+200 | dentist | 24/02/2011 07:00 | 00:45 | see hygenist | not done | urgent | Manchester | near Oxford street
+300 | optician | 25/03/2011 10:00 | 01:00 | mend glasses | not done | urgent | Manchester | near Oxford street

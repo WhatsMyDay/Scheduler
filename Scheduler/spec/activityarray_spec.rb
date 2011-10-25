@@ -8,7 +8,7 @@ describe ActivityArray do
 
   it "should load one activities from a file" do
     f=File.new("testfile", "w")
-    f.write("100 | doctor | 23/01/2011 04:23 | 00:30 | general checkup | done | urgent | Manchester\n")
+    f.write("100 | doctor | 23/01/2011 04:23 | 00:30 | general checkup | done | urgent | Manchester | near Oxford street\n")
     f.close()
 
     subject.load_from_file("testfile")
@@ -21,13 +21,14 @@ describe ActivityArray do
     subject[0].is_done == true
     subject[0].priority =="urgent"
     subject[0].location == "Manchester"
+    subject[0].notes == "near Oxford street"
   end
 
   it "should load several activities from a file" do
     f=File.new("testfile", "w")
-    f.write("100 | doctor | 23/01/2011 04:00 | 00:30 | general checkup | done | urgent | Manchester\n")
-    f.write("200 | dentist | 24/02/2011 07:00 | 00:45 | see hygenist | done | urgent | Manchester\n")
-    f.write("300 | optician | 25/03/2011 10:00 | 01:00 | mend glasses | done | urgent | Manchester\n")
+    f.write("100 | doctor | 23/01/2011 04:00 | 00:30 | general checkup | done | urgent | Manchester | near Oxford street\n")
+    f.write("200 | dentist | 24/02/2011 07:00 | 00:45 | see hygenist | done | urgent | Manchester | near Oxford street\n")
+    f.write("300 | optician | 25/03/2011 10:00 | 01:00 | mend glasses | done | urgent | Manchester | near Oxford street\n")
     f.close()
 
     subject.load_from_file("testfile")
@@ -40,6 +41,7 @@ describe ActivityArray do
     subject[0].is_done.should == true
     subject[0].priority.should == "urgent"
     subject[0].location.should == "Manchester"
+    subject[0].notes.should == "near Oxford street"
 
     subject[1].id.should == 200
     subject[1].title.should == "dentist"
@@ -49,6 +51,7 @@ describe ActivityArray do
     subject[1].is_done.should == true
     subject[1].priority.should == "urgent"
     subject[1].location.should == "Manchester"
+    subject[1].notes.should == "near Oxford street"
 
     subject[2].id.should == 300
     subject[2].title.should == "optician"
@@ -58,19 +61,20 @@ describe ActivityArray do
     subject[2].is_done.should == true
     subject[2].priority.should == "urgent"
     subject[2].location.should == "Manchester"
+    subject[2].notes.should == "near Oxford street"
   end
 
   it "should store several activities in a file" do
-    subject << Activity.new(100, "doctor", '23/01/2011 04:00', 30, "general checkup", "urgent", "Manchester")
-    subject << Activity.new(200, "dentist", '24/02/2011 07:00', 45, "see hygenist", "urgent", "Manchester")
-    subject << Activity.new(300, "optician", '25/03/2011 10:00', 60, "mend glasses", "urgent", "Manchester")
+    subject << Activity.new(100, "doctor", '23/01/2011 04:00', 30, "general checkup", "urgent", "Manchester", "near Oxford street")
+    subject << Activity.new(200, "dentist", '24/02/2011 07:00', 45, "see hygenist", "urgent", "Manchester", "near Oxford street")
+    subject << Activity.new(300, "optician", '25/03/2011 10:00', 60, "mend glasses", "urgent", "Manchester", "near Oxford street")
 
     subject.store_to_file("output_file.txt")
 
     f = File.open("output_file.txt")
-    f.gets.should == "100 | doctor | 23/01/2011 04:00 | 00:30 | general checkup | not done | urgent | Manchester\n"
-    f.gets.should == "200 | dentist | 24/02/2011 07:00 | 00:45 | see hygenist | not done | urgent | Manchester\n"
-    f.gets.should == "300 | optician | 25/03/2011 10:00 | 01:00 | mend glasses | not done | urgent | Manchester\n"
+    f.gets.should == "100 | doctor | 23/01/2011 04:00 | 00:30 | general checkup | not done | urgent | Manchester | near Oxford street\n"
+    f.gets.should == "200 | dentist | 24/02/2011 07:00 | 00:45 | see hygenist | not done | urgent | Manchester | near Oxford street\n"
+    f.gets.should == "300 | optician | 25/03/2011 10:00 | 01:00 | mend glasses | not done | urgent | Manchester | near Oxford street\n"
     f.close()
   end
 end
