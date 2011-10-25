@@ -1,0 +1,39 @@
+<div style="margin-left:5%; margin-right: 5%; font-family: Arial">
+
+<% @selected_activities.each do |activity| %>
+      <div style="border: 2px solid;">
+    <table>
+      <tr>
+        <td width="10%"><img src="<%= activity.is_done ? 'done.png' : 'not_done.png' %>"/></td>
+        <td width="30%"><b><font size="5"><%= activity.title %></font></b></td>
+        <td><i><font size="5"><%= activity.description %></font></i></td>
+
+      </tr>
+      <tr>
+          <td width="70px">
+        <% if activity.priority == 'urgent' %>
+            <img src="star.png"/><img src="star.png"/>
+        <% elsif activity.priority == 'normal' %>
+            <img src="star.png"/>
+        <% end %>
+        </td>
+
+        <td><%= activity.start_time %></td>
+        <td><%= activity.duration.to_s %> minutes</td>
+        <td><%= activity.location %></td>
+      </tr>
+      <tr>
+        <td>notes</td>
+      </tr>
+
+
+    </table>
+        </div>
+          <div align="right">
+          <a href="/edit_activity/<%=activity.id%>"><img src="edit.png"/></a>
+           <a href="/delete_activity/<%=activity.id%>"><img src="delete.png"/></a></td>
+          </div>
+    <br>
+<% end %>
+
+</div>
