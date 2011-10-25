@@ -54,6 +54,7 @@ end
    activity.duration = params[:duration]
    activity.description = params[:description]
    activity.is_done = params[:is_done]
+   activity.priority = params[:priority]
    if (params[:is_done]=="yes")then
    activity.is_done =true
     puts "activity status is changed to done" + params[:is_done]
