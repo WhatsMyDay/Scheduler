@@ -50,6 +50,7 @@ end
    activity.duration = params[:duration]
    activity.description = params[:description]
    activity.is_done = params[:is_done]
+   activity.location = params[:location]
    activity.priority = params[:priority]
    if (params[:is_done]=="yes")then
    activity.is_done =true

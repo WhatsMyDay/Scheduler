@@ -11,6 +11,7 @@
     Duration:<input type="text" id="Duration" name="duration" value="<%=@activity.duration  %>"/><br>
     Description:<input type="text" id="Description" name="description" value="<%=@activity.description  %>"/><br>
     <input type="hidden" name="priority" value="normal"/>
+    Location:<input type="text" name="location" value="<%=@activity.location  %>"/>
    is Done?:<select name="is_done">
         <option>no</option>
          <%=puts @activity.is_done.to_s%>
