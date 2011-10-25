@@ -16,6 +16,10 @@
          <%=puts @activity.is_done.to_s%>
        <option <%= @activity.is_done ? "selected" : "" %> >yes</option>
     </select>  <br>
+    Priority:<br>
+    <input type="radio" name="priority" value="urgent"  <%= @activity.priority=="urgent" ? "checked" : "" %> />Urgent<br>
+    <input type="radio" name="priority" value="normal" <%= @activity.priority=="normal" ? "checked" : "" %> />Normal<br>
+    <input type="radio" name="priority" value="low" <%= @activity.priority=="low" ? "checked" : "" %>/>Low<br>
     <input type="submit" name="edit" value="edit">
     </form>
   </body>
