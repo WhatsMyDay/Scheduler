@@ -54,3 +54,6 @@ post '/do_edit_activity' do
   redirect '/activities'
 end
 
+get '/' do
+  erb :index
+end
