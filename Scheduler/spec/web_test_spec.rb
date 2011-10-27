@@ -4,8 +4,9 @@ require "watir-webdriver"
 require "rubygems"
 
 describe Activity do
+  browser = Watir::Browser.new :ff
+
   it "should create an activity on web page" do
-    browser = Watir::Browser.new :ff
     browser.goto "localhost:4567/add_activity"
     browser.text_field(:name => "title").set "Doctor"
     browser.text_field(:name => "start_time").set "16/10/2011 10:11:15"
@@ -16,11 +17,9 @@ describe Activity do
     browser.text_field(:name => "notes").set "near Oxford street"
     browser.button(:value => "Submit").click
     browser.url.should=="http://localhost:4567/activities"
-    browser.close
   end
 
   it "should edit an activity" do
-    browser = Watir::Browser.new :ff
     browser.goto "localhost:4567/activities"
     browser.link(:name => "edit" ).click
     browser.text_field(:name => "title").set "Dentist"
@@ -33,7 +32,5 @@ describe Activity do
     browser.radio(:name => "priority", :value => "urgent").set
     browser.button(:value=> "Submit").click
     browser.url.should=="http://localhost:4567/activities"
-    browser.close
   end
-
 end
