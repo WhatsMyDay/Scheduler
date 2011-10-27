@@ -43,11 +43,31 @@
           });
       });
   </script>
+  <script>
+    function validateDateFormat(){
+      var textF = document.getElementById('start_time');
+      var datetimeBits = textF.value.split(' ');
+      var date = datetimeBits[0].split('/');
+      day = date[0];
+      month = date[1];
+      year = date[2];
+      var time = datetimeBits[1].split(':');
+      hours = time[0];
+      minutes = time[1];
+      if(day.length <2 || day.length >2 || month.length<2 || month.length>2 || year.length<4 || year.length>4 ||
+      hours.length<2 || hours.length>2 || minutes.length<2 || minutes.length>2 || parseInt(day)>31 || parseInt(month)>12 || parseInt(hours)>24 || parseInt(minutes)>60 || textF.value.length>16)
+      {
+          alert('You have entered an invalid format of the date and time');
+          return false;
+      }
+
+      }
+  </script>
   <title>Add Activity</title>
 </head>
 <body>
 <div style="margin-left:5%; margin-right: 5%; font-family: Arial">
-  <form name="input" action="<%= @activity.nil? ? '/insert_activity' : '/do_edit_activity' %>" method="post">
+  <form name="input" action="<%= @activity.nil? ? '/insert_activity' : '/do_edit_activity' %>" method="post" onsubmit="return validateDateFormat()" >
     <% if !@activity.nil? %>
         <input type="hidden" name="id" value="<%= @activity.id %>"/>
     <% end %>
@@ -105,7 +125,7 @@
       <% end %>
       <tr>
         <td></td>
-        <td align="right"><input type="submit" name="submit" value="Submit"></td>
+        <td align="right"><input type="submit" name="submit" value="Submit" ></td>
       </tr>
     </table>
   </form>
