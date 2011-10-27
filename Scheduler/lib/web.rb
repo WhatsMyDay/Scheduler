@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'activity'
-require 'activityarray'
+require 'activity_array'
 
 array=ActivityArray.new
 
@@ -13,21 +13,23 @@ get '/activities/?:condition?' do
 end
 
 get '/add_activity' do
+  @activity = nil
+
   erb :add_activity
 end
 
 post '/insert_activity' do
- activity = Activity.new(Time.now.to_i, params[:title], params[:start_time], params[:duration].to_i, params[:description],
+  activity = Activity.new(Time.now.to_i, params[:title], params[:start_time], params[:duration].to_i, params[:description],
                           params[:priority], params[:location], params[:notes])
   array << activity
-  array.store_to_file("saved_activities.txt")
+
   redirect '/activities'
 end
 
 get '/edit_activity/:id' do
-  activities = array.select { |a| a.id == params[:id].to_i }
-  @activity = activities.first
-  erb :edit_activity
+  @activity = (array.select { |a| a.id == params[:id].to_i }).first
+
+  erb :add_activity
 end
 
 
@@ -36,26 +38,19 @@ get '/delete_activity/:id' do
 
   redirect '/activities'
 end
- post'/do_edit_activity' do
-   activities = array.select { |a| a.id == params[:id].to_i}
-   activity = activities.first
-   activity.title = params[:title]
-   activity.start_time = ActivityTime.new(params[:start_time])
-   activity.duration = params[:duration]
-   activity.description = params[:description]
-   activity.is_done = params[:is_done]
-   activity.location = params[:location]
-   activity.notes = params[:notes]
-   activity.priority = params[:priority]
-   if (params[:is_done]=="yes")then
-   activity.is_done =true
-    puts "activity status is changed to done" + params[:is_done]
-  else
-    activity.is_done = false
-    puts "activity status is changed to not done" + params[:is_done]
-  end
-  redirect '/activities'
+post '/do_edit_activity' do
+  activities = array.select { |a| a.id == params[:id].to_i }
+  activity = activities.first
+  activity.title = params[:title]
+  activity.start_time = ActivityTime.new(params[:start_time])
+  activity.duration = params[:duration]
+  activity.description = params[:description]
+  activity.complete = params[:is_done] == "yes"
+  activity.location = params[:location]
+  activity.notes = params[:notes]
+  activity.priority = params[:priority]
 
+  redirect '/activities'
 end
 
 get '/' do

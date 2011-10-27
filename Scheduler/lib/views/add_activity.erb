@@ -1,66 +1,108 @@
 <html>
 <head>
   <style type="text/css">
-			/* css for timepicker */
-			.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
-			.ui-timepicker-div dl { text-align: left; }
-			.ui-timepicker-div dl dt { height: 25px; }
-			.ui-timepicker-div dl dd { margin: -25px 10px 10px 65px; }
-			.ui-timepicker-div td { font-size: 90%; }
-			.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+          /* css for timepicker */
+      .ui-timepicker-div .ui-widget-header {
+          margin-bottom: 8px;
+      }
+
+      .ui-timepicker-div dl {
+          text-align: left;
+      }
+
+      .ui-timepicker-div dl dt {
+          height: 25px;
+      }
+
+      .ui-timepicker-div dl dd {
+          margin: -25px 10px 10px 65px;
+      }
+
+      .ui-timepicker-div td {
+          font-size: 90%;
+      }
+
+      .ui-tpicker-grid-label {
+          background: none;
+          border: none;
+          margin: 0;
+          padding: 0;
+      }
 
 
-</style>
-  <link rel="stylesheet" media="all" type="text/css" href="/css/ui-lightness/jquery-ui-1.8.16.custom.css" />
- <script type="text/javascript" src="/js/jquery-1.6.2.min.js"></script>
-<script type="text/javascript" src="/js/jquery-ui-1.8.16.custom.min.js"></script>
-<script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
-<script type="text/javascript">
-			$(function(){
-				$('#start_time').datetimepicker({
-                    timeFormat: 'hh:mm',
-                    dateFormat: 'dd/mm/yy'
-                });
-			});
-</script>
+  </style>
+  <link rel="stylesheet" media="all" type="text/css" href="/css/ui-lightness/jquery-ui-1.8.16.custom.css"/>
+  <script type="text/javascript" src="/js/jquery-1.6.2.min.js"></script>
+  <script type="text/javascript" src="/js/jquery-ui-1.8.16.custom.min.js"></script>
+  <script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
+  <script type="text/javascript">
+      $(function() {
+          $('#start_time').datetimepicker({
+              timeFormat: 'hh:mm',
+              dateFormat: 'dd/mm/yy'
+          });
+      });
+  </script>
   <title>Add Activity</title>
 </head>
 <body>
 <div style="margin-left:5%; margin-right: 5%; font-family: Arial">
-  <form name="input" action="insert_activity" method="post">
+  <form name="input" action="<%= @activity.nil? ? '/insert_activity' : '/do_edit_activity' %>" method="post">
+    <% if !@activity.nil? %>
+        <input type="hidden" name="id" value="<%= @activity.id %>"/>
+    <% end %>
     <table>
       <tr>
         <td>Title:</td>
-        <td><input type="text" id="title" name="title"/></td>
+        <td><input type="text" id="title" name="title"<%= @activity.nil? ? '' : " value=\"#{@activity.title}\"" %>></td>
       </tr>
       <tr>
         <td>Description:</td>
-        <td><input type="text" id="Description" name="description"/></td>
+        <td>
+          <input type="text" id="Description" name="description"<%= @activity.nil? ? '' : " value=\"#{@activity.description}\"" %>>
+        </td>
       </tr>
       <tr>
         <td>Start Date and Time:</td>
-        <td><input type="text" id="start_time" name="start_time"/></td>
+        <td>
+          <input type="text" id="start_time" name="start_time"<%= @activity.nil? ? '' : " value=\"#{@activity.start_time}\"" %>>
+        </td>
       </tr>
       <tr>
         <td>Duration:</td>
-        <td><input type="text" id="Duration" name="duration"/></td>
+        <td>
+          <input type="text" id="Duration" name="duration"<%= @activity.nil? ? '' : " value=\"#{@activity.duration}\"" %>>
+        </td>
       </tr>
       <tr>
         <td>Location:</td>
-        <td><input type="text" id="Location" name="location"/></td>
+        <td>
+          <input type="text" id="Location" name="location"<%= @activity.nil? ? '' : " value=\"#{@activity.location}\"" %>>
+        </td>
       </tr>
       <tr>
         <td>Notes:</td>
-        <td><input type="text" id="notes" name="notes"/></td>
+        <td><input type="text" id="notes" name="notes"<%= @activity.nil? ? '' : " value=\"#{@activity.notes}\"" %>></td>
       </tr>
       <tr>
         <td>Priority:</td>
         <td>
-          <input type="radio" name="priority" value="urgent"/>Urgent<br>
-          <input type="radio" name="priority" value="normal"/>Normal<br>
-          <input type="radio" name="priority" value="low"/>Low
+          <input type="radio" name="priority" value="urgent"<%= @activity.priority=="urgent" ? "checked" : "" if !@activity.nil? %>/>Urgent<br>
+          <input type="radio" name="priority" value="normal"<%= @activity.priority=="normal" ? "checked" : "" if !@activity.nil? %>/>Normal<br>
+          <input type="radio" name="priority" value="low"<%= @activity.priority=="low" ? "checked" : "" if !@activity.nil? %>/>Low
         </td>
       </tr>
+      <% if !@activity.nil? %>
+          <tr>
+            <td>Complete:</td>
+            <td>
+              <select name="is_done">
+                <option value="no" <%= !@activity.complete? ? "selected" : "" %>>No</option>
+                <option value="yes" <%= @activity.complete? ? "selected" : "" %>>Yes</option>
+              </select>
+            </td>
+          </tr>
+      <% end %>
       <tr>
         <td></td>
         <td align="right"><input type="submit" name="submit" value="Submit"></td>
