@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'activity'
-require 'activityarray'
+require 'activity_array'
 
 array=ActivityArray.new
 
@@ -22,7 +22,6 @@ post '/insert_activity' do
   activity = Activity.new(Time.now.to_i, params[:title], params[:start_time], params[:duration].to_i, params[:description],
                           params[:priority], params[:location], params[:notes])
   array << activity
-  array.store_to_file("saved_activities.txt")
 
   redirect '/activities'
 end
