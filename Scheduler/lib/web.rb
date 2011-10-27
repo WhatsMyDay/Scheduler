@@ -45,7 +45,7 @@ post '/do_edit_activity' do
   activity.start_time = ActivityTime.new(params[:start_time])
   activity.duration = params[:duration]
   activity.description = params[:description]
-  activity.is_done = params[:is_done] == "yes"
+  activity.complete = params[:is_done] == "yes"
   activity.location = params[:location]
   activity.notes = params[:notes]
   activity.priority = params[:priority]

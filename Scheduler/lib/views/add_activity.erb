@@ -52,8 +52,8 @@
             <td>Complete:</td>
             <td>
               <select name="is_done">
-                <option value="no" <%= !@activity.is_done ? "selected" : "" %>>No</option>
-                <option value="yes" <%= @activity.is_done ? "selected" : "" %>>Yes</option>
+                <option value="no" <%= !@activity.complete? ? "selected" : "" %>>No</option>
+                <option value="yes" <%= @activity.complete? ? "selected" : "" %>>Yes</option>
               </select>
             </td>
           </tr>
