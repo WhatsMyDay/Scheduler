@@ -17,11 +17,16 @@ class Task
     @notes = notes
   end
 
-  def decode_line input_string
+  def create_result_array(input_string)
     result = []
     input_string.split(" | ").each do |s|
       result << s.strip
     end
+    result
+  end
+
+  def decode_line input_string
+    result = create_result_array(input_string)
     @id = result[0].to_i
     @title = result[1]
     @description = result[2]
