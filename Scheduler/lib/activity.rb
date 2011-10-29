@@ -4,10 +4,6 @@ require 'task'
 class Activity<Task
   attr_accessor :start_time, :duration
 
-  def complete?
-    @complete
-  end
-
   def initialize(num = nil, title = nil, start_time = nil, dur = nil, desc = nil, prior = nil, location = nil, notes = nil)
     super(num, title, desc , prior , location, notes )
     @start_time = ActivityTime.new(start_time) if !start_time.nil?
@@ -15,10 +11,7 @@ class Activity<Task
   end
 
   def decode_line input_string
-    result = []
-    input_string.split(" | ").each do |s|
-      result << s.strip
-    end
+    result = create_result_array(input_string)
     @id = result[0].to_i
     @title = result[1]
     @start_time = ActivityTime.new(result[2])
