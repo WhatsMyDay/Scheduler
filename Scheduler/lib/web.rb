@@ -5,6 +5,7 @@ require 'task_array'
 
 activity_array=ActivityArray.new
 task_array=TaskArray.new
+@search=false;
 
 get '/activities/?:condition?' do
   selection = params[:condition].nil? ? proc { true } : proc { |a| a.complete? == false }
@@ -61,7 +62,7 @@ post '/search_activity' do
   start_time = ActivityTime.new(params[:start_time])
   end_time = ActivityTime.new(params[:end_time])
   @selected_activities = activity_array.select { |a| a.start_time >= start_time && a.start_time <= end_time}
-
+  @search=true;
   erb :activities
 end
 
@@ -105,6 +106,4 @@ get '/test' do
   erb :test
 end
 
-get '/search_bar' do
-  erb:search_bar
-end
+

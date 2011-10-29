@@ -1,4 +1,7 @@
 <div style="margin-left:5%; margin-right: 5%; font-family: Arial">
+  <% if(@search) %>
+  <%= erb :search_bar %>
+  <%end%>
   <% if @selected_activities.length==0 %>
     <center><b>There are no activities to view</b></center>
   <% else %>
