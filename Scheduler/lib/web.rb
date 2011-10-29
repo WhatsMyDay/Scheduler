@@ -53,6 +53,18 @@ post '/do_edit_activity' do
   redirect '/activities'
 end
 
+get '/search_bar' do
+  erb :search_bar
+end
+
+post '/search_activity' do
+  start_time = ActivityTime.new(params[:start_time])
+  end_time = ActivityTime.new(params[:end_time])
+  @selected_activities = activity_array.select { |a| a.start_time >= start_time && a.start_time <= end_time}
+
+  erb :activities
+end
+
 get '/add_task' do
   @task = nil
   erb :add_task

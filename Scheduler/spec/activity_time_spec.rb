@@ -19,4 +19,21 @@ describe ActivityTime do
       a_time.to_s.should == time_string
     end
   end
+
+  context "Time comparison" do
+    it "should compare two dates" do
+      start_time = '22/10/2011 11:30'
+      end_time = '30/10/2011 16:34'
+      time1 = ActivityTime.new(start_time)
+      time2 = ActivityTime.new(end_time)
+      (time1 < time2).should == true
+      (time1 > time2).should == false
+      (time1 == time2).should == false
+      (time2 < time1).should == false
+      (time2 > time1).should == true
+      (time1 == time1).should == true
+      (time1 <= time2).should == true
+      (time1 >= time2).should == false
+    end
+  end
 end

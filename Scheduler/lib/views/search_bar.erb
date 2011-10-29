@@ -1,0 +1,100 @@
+<html>
+<head>
+  <style type="text/css">
+          /* css for timepicker */
+      .ui-timepicker-div .ui-widget-header {
+          margin-bottom: 8px;
+      }
+
+      .ui-timepicker-div dl {
+          text-align: left;
+      }
+
+      .ui-timepicker-div dl dt {
+          height: 25px;
+      }
+
+      .ui-timepicker-div dl dd {
+          margin: -25px 10px 10px 65px;
+      }
+
+      .ui-timepicker-div td {
+          font-size: 90%;
+      }
+
+      .ui-tpicker-grid-label {
+          background: none;
+          border: none;
+          margin: 0;
+          padding: 0;
+      }
+
+
+  </style>
+  <link rel="stylesheet" media="all" type="text/css" href="/css/ui-lightness/jquery-ui-1.8.16.custom.css"/>
+  <script type="text/javascript" src="/js/jquery-1.6.2.min.js"></script>
+  <script type="text/javascript" src="/js/jquery-ui-1.8.16.custom.min.js"></script>
+  <script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
+  <script type="text/javascript">
+      $(function() {
+          $('#start_time').datetimepicker({
+              timeFormat: 'hh:mm',
+              dateFormat: 'dd/mm/yy'
+          });
+      });
+  </script>
+  <script type="text/javascript">
+      $(function() {
+          $('#end_time').datetimepicker({
+              timeFormat: 'hh:mm',
+              dateFormat: 'dd/mm/yy'
+          });
+      });
+  </script>
+  <script>
+    function validateDateFormat(){
+      var textF = document.getElementById('start_time');
+      var datetimeBits = textF.value.split(' ');
+      var date = datetimeBits[0].split('/');
+      day = date[0];
+      month = date[1];
+      year = date[2];
+      var time = datetimeBits[1].split(':');
+      hours = time[0];
+      minutes = time[1];
+      if(day.length <2 || day.length >2 || month.length<2 || month.length>2 || year.length<4 || year.length>4 ||
+      hours.length<2 || hours.length>2 || minutes.length<2 || minutes.length>2 || parseInt(day)>31 || parseInt(month)>12 || parseInt(hours)>24 || parseInt(minutes)>60 || textF.value.length>16)
+      {
+          alert('You have entered an invalid format of the date and time');
+          return false;
+      }
+
+      }
+  </script>
+  <title>Add Activity</title>
+</head>
+<body>
+<div style="margin-left:5%; margin-right: 5%; font-family: Arial">
+  <form name="input" action="/search_activity" method="post" onsubmit="return validateDateFormat()" >
+    <table>
+      <tr>
+        <td>Start Date and Time:</td>
+        <td>
+          <input type="text" id="start_time" name="start_time">
+        </td>
+      </tr>
+       <tr>
+        <td>End Date and Time:</td>
+        <td>
+          <input type="text" id="end_time" name="end_time">
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td align="right"><input type="submit" name="search" value="Search" ></td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>
