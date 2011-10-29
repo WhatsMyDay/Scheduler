@@ -10,6 +10,12 @@ get '/activities/?:condition?' do
   erb :activities
 end
 
+get '/tasks/?:condition?' do
+  selection = params[:condition].nil? ? proc { true } : proc { |a| a.is_done == false }
+  @selected_tasks = array.select &selection
+  erb :tasks
+end
+
 get '/add_activity' do
   @activity = nil
 
@@ -26,7 +32,6 @@ get '/edit_activity/:id' do
   @activity = (array.select { |a| a.id == params[:id].to_i }).first
   erb :add_activity
 end
-
 
 get '/delete_activity/:id' do
   array.delete_if { |a| a.id == params[:id].to_i }
