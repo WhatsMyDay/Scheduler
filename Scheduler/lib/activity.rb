@@ -27,9 +27,17 @@ class Activity<Task
 
   def encode_line
     separator = " | "
-    @id.to_s + separator + @title + separator + "#{@start_time}" + separator + (@duration.to_i / 60).to_s.rjust(2, '0') + ":" +
-        (@duration % 60).to_s.rjust(2, '0') + separator + @description + separator + "#{@complete ? "done" : "not done"}" +separator + @priority +
-        separator + @location + separator + @notes
+    @id.to_s + separator +
+    @title + separator +
+    "#{@start_time}" + separator +
+    (@duration.to_i / 60).to_s.rjust(2, '0') +
+    ":" +
+    (@duration % 60).to_s.rjust(2, '0') + separator +
+     @description + separator +
+    "#{@complete ? "done" : "not done"}" +separator +
+    @priority + separator +
+    @location + separator +
+    @notes
   end
 
   def to_s()

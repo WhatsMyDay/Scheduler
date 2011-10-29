@@ -1,9 +1,24 @@
 <html>
 <head>
   <title>Add Task</title>
+  <script type="text/javascript">
+      function toggleSet(view)
+      {
+          if(view.value=="activity"){
+              window.location = "/add_activity"
+          }
+          else {
+              window.location = "/add_task"
+          }
+      }
+  </script>
 </head>
 <body>
 <div style="margin-left:5%; margin-right: 5%; font-family: Arial">
+   <span style="font-weight: bold">Add an Activity :</span>
+<input type="radio" name="view" value="activity" onclick="toggleSet(this)" >
+<span style="font-weight: bold; padding-left:20px;">Add a Task :</span>
+<input type="radio" name="view" value="task" onclick="toggleSet(this) " checked>
   <form name="input" action="<%= @task.nil? ? '/insert_task' : '/do_edit_task' %>" method="post" onsubmit="return validateDateFormat()" >
     <% if !@task.nil? %>
         <input type="hidden" name="id" value="<%= @task.id %>"/>

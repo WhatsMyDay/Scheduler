@@ -14,7 +14,7 @@ end
 
 get '/tasks/?:condition?' do
   selection = params[:condition].nil? ? proc { true } : proc { |a| a.is_done == false }
-  @selected_tasks = array.select &selection
+  @selected_tasks = task_array.select &selection
   erb :tasks
 end
 
@@ -60,6 +60,28 @@ end
 post '/insert_task' do
   task = Task.new(Time.now.to_i, params[:title], params[:description],params[:priority], params[:location], params[:notes])
   task_array << task
+  redirect '/tasks'
+end
+
+get '/edit_task/:id' do
+  @task = (task_array.select { |a| a.id == params[:id].to_i }).first
+  erb :add_task
+end
+
+get '/delete_task/:id' do
+  task_array.delete_if { |a| a.id == params[:id].to_i }
+  redirect '/tasks'
+end
+
+post '/do_edit_task' do
+  tasks = task_array.select { |a| a.id == params[:id].to_i }
+  task = tasks.first
+  task.title = params[:title]
+  task.description = params[:description]
+  task.complete = params[:is_done] == "yes"
+  task.location = params[:location]
+  task.notes = params[:notes]
+  task.priority = params[:priority]
   redirect '/tasks'
 end
 
