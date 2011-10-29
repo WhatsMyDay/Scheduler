@@ -39,8 +39,13 @@ class Task
 
   def encode_line
     separator = " | "
-    @id.to_s + separator + @title + separator + @description + separator + "#{@complete ? "done" : "not done"}" +separator + @priority +
-        separator + @location + separator + @notes
+    @id.to_s + separator +
+    @title + separator +
+    @description + separator +
+    "#{@complete ? "done" : "not done"}" +separator +
+    @priority + separator +
+    @location + separator +
+    @notes
   end
 
   def to_s()

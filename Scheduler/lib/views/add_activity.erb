@@ -44,29 +44,44 @@
       });
   </script>
   <script>
-    function validateDateFormat(){
-      var textF = document.getElementById('start_time');
-      var datetimeBits = textF.value.split(' ');
-      var date = datetimeBits[0].split('/');
-      day = date[0];
-      month = date[1];
-      year = date[2];
-      var time = datetimeBits[1].split(':');
-      hours = time[0];
-      minutes = time[1];
-      if(day.length <2 || day.length >2 || month.length<2 || month.length>2 || year.length<4 || year.length>4 ||
-      hours.length<2 || hours.length>2 || minutes.length<2 || minutes.length>2 || parseInt(day)>31 || parseInt(month)>12 || parseInt(hours)>24 || parseInt(minutes)>60 || textF.value.length>16)
-      {
-          alert('You have entered an invalid format of the date and time');
-          return false;
-      }
+      function validateDateFormat(){
+          var textF = document.getElementById('start_time');
+          var datetimeBits = textF.value.split(' ');
+          var date = datetimeBits[0].split('/');
+          day = date[0];
+          month = date[1];
+          year = date[2];
+          var time = datetimeBits[1].split(':');
+          hours = time[0];
+          minutes = time[1];
+          if(day.length <2 || day.length >2 || month.length<2 || month.length>2 || year.length<4 || year.length>4 ||
+                  hours.length<2 || hours.length>2 || minutes.length<2 || minutes.length>2 || parseInt(day)>31 || parseInt(month)>12 || parseInt(hours)>24 || parseInt(minutes)>60 || textF.value.length>16)
+          {
+              alert('You have entered an invalid format of the date and time');
+              return false;
+          }
 
+      }
+  </script>
+  <script type="text/javascript">
+      function toggleSet(view)
+      {
+          if(view.value=="activity"){
+              window.location = "/add_activity"
+          }
+          else {
+              window.location = "/add_task"
+          }
       }
   </script>
   <title>Add Activity</title>
 </head>
 <body>
 <div style="margin-left:5%; margin-right: 5%; font-family: Arial">
+ <span style="font-weight: bold">Add an Activity :</span>
+<input type="radio" name="view" value="activity" onclick="toggleSet(this)" checked>
+<span style="font-weight: bold; padding-left:20px;">Add a Task :</span>
+<input type="radio" name="view" value="task" onclick="toggleSet(this)">
   <form name="input" action="<%= @activity.nil? ? '/insert_activity' : '/do_edit_activity' %>" method="post" onsubmit="return validateDateFormat()" >
     <% if !@activity.nil? %>
         <input type="hidden" name="id" value="<%= @activity.id %>"/>
