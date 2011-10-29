@@ -1,23 +1,17 @@
 require 'activity_time'
+require 'task'
 
-class Activity
-  attr_accessor :id, :title, :start_time, :duration, :description, :priority, :location, :notes
-  attr_writer :complete
+class Activity<Task
+  attr_accessor :start_time, :duration
 
   def complete?
     @complete
   end
 
   def initialize(num = nil, title = nil, start_time = nil, dur = nil, desc = nil, prior = nil, location = nil, notes = nil)
-    @id = num
-    @title = title
+    super(num, title, desc , prior , location, notes )
     @start_time = ActivityTime.new(start_time) if !start_time.nil?
     @duration = dur
-    @description = desc
-    @complete = false
-    @priority = prior
-    @location = location
-    @notes = notes
   end
 
   def decode_line input_string

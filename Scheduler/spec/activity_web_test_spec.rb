@@ -9,7 +9,7 @@ describe Activity do
   it "should create an activity on web page" do
     browser.goto "localhost:4567/add_activity"
     browser.text_field(:name => "title").set "Doctor"
-    browser.text_field(:name => "start_time").set "16/10/2011 10:11:15"
+    browser.text_field(:name => "start_time").set "16/10/2011 10:11"
     browser.text_field(:name => "duration").set "30"
     browser.text_field(:name => "description").set "Check up!"
     browser.radio(:name => "priority", :value => "normal").set
