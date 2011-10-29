@@ -1,0 +1,35 @@
+<div style="margin-left:5%; margin-right: 5%; font-family: Arial">
+  <% if @selected_tasks.length==0 %>
+    <center><b>There are no tasks to view</b></center>
+  <% else %>
+      <% @selected_tasks.each do |task| %>
+          <div style="border: 2px solid;">
+            <table>
+              <tr>
+                <td width="10%"><img src="<%= task.complete? ? 'done.png' : 'not_done.png' %>"/></td>
+                <td width="30%"><b><font size="5"><%= task.title %></font></b></td>
+                <td><i><font size="5"><%= task.description %></font></i></td>
+              </tr>
+              <tr>
+                <td width="70px">
+                  <% if task.priority == 'urgent' %>
+                      <img src="star.png"/><img src="star.png"/>
+                  <% elsif task.priority == 'normal' %>
+                      <img src="star.png"/>
+                  <% end %>
+                </td>
+                <td><%= task.location %></td>
+              </tr>
+              <tr>
+                <td><i><%= task.notes %></i></td>
+              </tr>
+            </table>
+          </div>
+          <div align="right">
+            <a name="edit" href="/edit_task/<%= task.id %>"><img src="edit.png" style="border-style: none"/></a>
+            <a name="delete" href="/delete_task/<%= task.id %>"><img src="delete.png" style="border-style: none"/></a></td>
+          </div>
+          <br>
+      <% end %>
+  <% end %>
+</div>
