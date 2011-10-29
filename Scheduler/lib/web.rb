@@ -1,40 +1,41 @@
 require 'sinatra'
 require 'activity'
 require 'activity_array'
+require 'task_array'
 
-array=ActivityArray.new
+activity_array=ActivityArray.new
+task_array=TaskArray.new
 
 get '/activities/?:condition?' do
   selection = params[:condition].nil? ? proc { true } : proc { |a| a.is_done == false }
-  @selected_activities = array.select &selection
+  @selected_activities = activity_array.select &selection
   erb :activities
 end
 
 get '/add_activity' do
   @activity = nil
-
   erb :add_activity
 end
 post '/insert_activity' do
   activity = Activity.new(Time.now.to_i, params[:title], params[:start_time], params[:duration].to_i, params[:description],
                           params[:priority], params[:location], params[:notes])
-  array << activity
+  activity_array << activity
   redirect '/activities'
 end
 
 get '/edit_activity/:id' do
-  @activity = (array.select { |a| a.id == params[:id].to_i }).first
+  @activity = (activity_array.select { |a| a.id == params[:id].to_i }).first
   erb :add_activity
 end
 
 
 get '/delete_activity/:id' do
-  array.delete_if { |a| a.id == params[:id].to_i }
+  activity_array.delete_if { |a| a.id == params[:id].to_i }
   redirect '/activities'
 end
 
 post '/do_edit_activity' do
-  activities = array.select { |a| a.id == params[:id].to_i }
+  activities = activity_array.select { |a| a.id == params[:id].to_i }
   activity = activities.first
   activity.title = params[:title]
   activity.start_time = ActivityTime.new(params[:start_time])
@@ -45,6 +46,16 @@ post '/do_edit_activity' do
   activity.notes = params[:notes]
   activity.priority = params[:priority]
   redirect '/activities'
+end
+
+get '/add_task' do
+  @task = nil
+  erb :add_task
+end
+post '/insert_task' do
+  task = Task.new(Time.now.to_i, params[:title], params[:description],params[:priority], params[:location], params[:notes])
+  task_array << task
+  redirect '/tasks'
 end
 
 get '/' do

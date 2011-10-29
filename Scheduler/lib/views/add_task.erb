@@ -1,0 +1,59 @@
+<html>
+<head>
+  <title>Add Task</title>
+</head>
+<body>
+<div style="margin-left:5%; margin-right: 5%; font-family: Arial">
+  <form name="input" action="<%= @task.nil? ? '/insert_task' : '/do_edit_task' %>" method="post" onsubmit="return validateDateFormat()" >
+    <% if !@task.nil? %>
+        <input type="hidden" name="id" value="<%= @task.id %>"/>
+    <% end %>
+    <table>
+      <tr>
+        <td>Title:</td>
+        <td><input type="text" id="title" name="title"<%= @task.nil? ? '' : " value=\"#{@task.title}\"" %>></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td>
+          <input type="text" id="Description" name="description"<%= @task.nil? ? '' : " value=\"#{@task.description}\"" %>>
+        </td>
+      </tr>
+      <tr>
+        <td>Location:</td>
+        <td>
+          <input type="text" id="Location" name="location"<%= @task.nil? ? '' : " value=\"#{@task.location}\"" %>>
+        </td>
+      </tr>
+      <tr>
+        <td>Notes:</td>
+        <td><input type="text" id="notes" name="notes"<%= @task.nil? ? '' : " value=\"#{@task.notes}\"" %>></td>
+      </tr>
+      <tr>
+        <td>Priority:</td>
+        <td>
+          <input type="radio" name="priority" value="urgent"<%= @task.priority=="urgent" ? "checked" : "" if !@task.nil? %>/>Urgent<br>
+          <input type="radio" name="priority" value="normal"<%= @task.priority=="normal" ? "checked" : "" if !@task.nil? %>/>Normal<br>
+          <input type="radio" name="priority" value="low"<%= @task.priority=="low" ? "checked" : "" if !@task.nil? %>/>Low
+        </td>
+      </tr>
+      <% if !@task.nil? %>
+          <tr>
+            <td>Complete:</td>
+            <td>
+              <select name="is_done">
+                <option value="no" <%= !@task.complete? ? "selected" : "" %>>No</option>
+                <option value="yes" <%= @task.complete? ? "selected" : "" %>>Yes</option>
+              </select>
+            </td>
+          </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td align="right"><input type="submit" name="submit" value="Submit" ></td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>
