@@ -1,14 +1,10 @@
-<html>
 <script type="text/javascript">
 function changeStyle()
 {
 var x=document.getElementById("result");
-
 var y=(x.contentWindow || x.contentDocument);
 if (y.document)y=y.document;
 y.body.style.backgroundColor="#0000ff";
 }
 </script>
-
-
-</html>
+<input type="button" name="search" value="Search" onclick="changeStyle()">

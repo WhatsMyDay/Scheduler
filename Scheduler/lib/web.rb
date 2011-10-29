@@ -88,3 +88,11 @@ end
 get '/' do
   erb :index
 end
+
+get '/test' do
+  erb :test
+end
+
+get '/search_bar' do
+  erb:search_bar
+end
