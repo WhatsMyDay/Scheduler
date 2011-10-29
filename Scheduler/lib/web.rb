@@ -14,7 +14,7 @@ end
 
 get '/tasks/?:condition?' do
   selection = params[:condition].nil? ? proc { true } : proc { |a| a.is_done == false }
-  @selected_tasks = array.select &selection
+  @selected_tasks = task_array.select &selection
   erb :tasks
 end
 
