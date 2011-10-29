@@ -7,13 +7,13 @@ activity_array=ActivityArray.new
 task_array=TaskArray.new
 
 get '/activities/?:condition?' do
-  selection = params[:condition].nil? ? proc { true } : proc { |a| a.is_done == false }
+  selection = params[:condition].nil? ? proc { true } : proc { |a| a.complete? == false }
   @selected_activities = activity_array.select &selection
   erb :activities
 end
 
 get '/tasks/?:condition?' do
-  selection = params[:condition].nil? ? proc { true } : proc { |a| a.is_done == false }
+  selection = params[:condition].nil? ? proc { true } : proc { |a| a.complete? == false }
   @selected_tasks = task_array.select &selection
   erb :tasks
 end
