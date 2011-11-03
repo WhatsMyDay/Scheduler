@@ -140,7 +140,11 @@
       <% end %>
       <tr>
         <td></td>
-        <td align="right"><input type="submit" name="submit" value="Submit" ></td>
+         <% if @activity.nil? %>
+            <td align="right"><input type="submit" name="submit" value="Submit" ></td>
+         <% else %>
+        <td align="right"><input type="submit" name="submit" value="Change" ></td>
+            <% end %>
       </tr>
     </table>
   </form>
